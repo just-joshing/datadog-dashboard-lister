@@ -37,8 +37,8 @@ async function run() {
     console.log(`${filteredDashboards.length} dashboards found`);
 
     console.log("Writing dashboards");
-    fs.writeFile("dashboards.txt",
-      filteredDashboards.map(({ title, url }) => ({ title, url })),
+    fs.writeFile("out/dashboards.txt",
+      JSON.stringify(filteredDashboards.map(({ title, url }) => ({ title, url }))),
       err => { if (err) throw err; }
     );
 
