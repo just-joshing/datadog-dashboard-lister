@@ -1,10 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Datadog Dashboard Lister'
+description: 'Retrieve a filtered set of dashboards'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  datadog-api-key:
+    description: 'Datadog API Key'
     required: true
-    default: 'World'
+  datadog-app-key:
+    description: 'Datadog APP Key'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'

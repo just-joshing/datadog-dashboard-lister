@@ -1,0 +1,18 @@
+name: Datadog Dashboard Lister
+
+on: [push, workflow_dispatch]
+
+jobs:
+  datadog_dashboard_lister_job:
+    runs-on: ubuntu-latest
+    name: A job to list datadog dashboards
+    steps:
+    - name: Datadog Dashboard Lister action step
+      id: dd-dashboard-lister
+      uses: just-joshing/datadog-dashboard-lister@main
+      with:
+        datadog-api-key: "${{ secrets.DD_API_KEY }}"
+        datadog-app-key: "${{ secrets.DD_APP_KEY }}"
+    # Use the output from the `dd-dashboard-lister` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.dd-dashboard-lister.outputs.time }}"

@@ -4,9 +4,12 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Inputs
 
-### `who-to-greet`
+### `datadog-api-key`
+**Required** The Datadog API key to use to retrieve the list of dashboards.
 
-**Required** The name of the person to greet. Default `"World"`.
+### `datadog-app-key`
+
+**Required** The Datadog APP key to use to retrieve the list of dashboards.
 
 ## Outputs
 
@@ -16,6 +19,7 @@ The time we greeted you.
 
 ## Example usage
 
-uses: actions/hello-world-javascript-action@v1.1
+uses: just-joshing/datadog-dashboard-lister@v1.0
 with:
-  who-to-greet: 'Mona the Octocat'
+  datadog-api-key: "${{ secrets.DD_API_KEY }}"
+  datadog-app-key: "${{ secrets.DD_APP_KEY }}"
