@@ -8,8 +8,8 @@ inputs:
     description: 'Datadog APP Key'
     required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  dashboards: # id of output
+    description: 'JSON string of Datadog dashboards'
 runs:
   using: 'node12'
   main: 'index.js'

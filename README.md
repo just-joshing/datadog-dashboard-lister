@@ -13,9 +13,9 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Outputs
 
-### `time`
+### `dashboards`
 
-The time we greeted you.
+JSON string of Datadog dashboards.
 
 ## Example usage
 

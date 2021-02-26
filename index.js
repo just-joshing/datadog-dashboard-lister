@@ -36,12 +36,9 @@ async function run() {
     const filteredDashboards = dashboards.filter(d => d.title.toLowerCase().includes("secret") && d.title.toLowerCase().includes("scanning"));
     console.log(`${filteredDashboards.length} dashboards found`);
 
-    console.log("Writing dashboards");
-    fs.writeFile("out/dashboards.txt",
-      JSON.stringify(filteredDashboards.map(({ title, url }) => ({ title, url }))),
-      err => { if (err) throw err; }
-    );
-
+    console.log("Writing dashboards to output");
+    output = JSON.stringify(filteredDashboards.map(({ title, description, url }) => ({ title, description, url }))),
+    core.setOutput("dashboards", output);
     console.log("Done writing");
   } catch (error) {
     core.setFailed(error.message || error);
