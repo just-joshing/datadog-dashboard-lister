@@ -62,7 +62,7 @@ async function run() {
     console.log(`${filteredDashboards.length} dashboards found`);
 
     console.log("Writing dashboards to output variable");
-    output = JSON.stringify(filteredDashboards.map(({ title, description, url }) => ({ title, description, url }))),
+    output = JSON.stringify(filteredDashboards.map(({ title, description, url }) => ({ title, description, url: `https://app.datadoghq.com${url}` }))),
     core.setOutput("dashboards", output);
     console.log("Done writing");
   } catch (error) {
