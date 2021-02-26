@@ -7,11 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to list datadog dashboards
     steps:
-    - name: Check out GitHub Pages branch
-      uses: actions/checkout@v2
-      with:
-        ref: 'test-output'
-        path: 'out'
     - name: Datadog Dashboard Lister action step
       id: dd-dashboard-lister
       uses: just-joshing/datadog-dashboard-lister@main
@@ -21,9 +16,4 @@ jobs:
         filter-titles-by-keywords: '["secret"]'
     - name: Publish dashboard
       run: |
-        git add .
-        git config user.name 'Joshua French'
-        git config user.email 'just-joshing@github.com'
-        git commit -m 'Update datadog dashboard list' --allow-empty
-        git push origin test-output
-      working-directory: out
+        echo "${{ steps.dd-dashboard-lister.outputs.dashboards }}"
