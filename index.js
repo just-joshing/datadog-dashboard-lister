@@ -1,11 +1,13 @@
 const core = require('@actions/core');
 const https = require('https');
 const fs = require('fs');
+const { match } = require('assert');
 
 async function run() {
   try {
     const datadogApiKey = core.getInput('datadog-api-key', { required: true });
     const datadogAppKey = core.getInput('datadog-app-key', { required: true });
+    const filters = JSON.parse(core.getInput('filter-titles-by-keywords', { required: false }));
 
     const dashboards = await new Promise((resolve, reject) => {
       https.get('https://api.datadoghq.com/api/v1/dashboard', {
@@ -33,10 +35,33 @@ async function run() {
     });
 
     console.log("Filtering dashboards");
-    const filteredDashboards = dashboards.filter(d => d.title.toLowerCase().includes("secret") && d.title.toLowerCase().includes("scanning"));
+    if (!Array.isArray(filters)) {
+      throw new Error("filter-titles-by-keywords must be an array");
+    }
+
+    const filteredDashboards = dashboards.filter(d => {
+      const title = d.title.toLowerCase();
+      let matchesCondition = false;
+      for (const filter of filters) {
+        if (Array.isArray(filter)) {
+          matchesCondition = filter.every(term => title.includes(term));
+        } else if (typeof filter == "string") {
+          matchesCondition = title.includes(filter);
+        } else {
+          throw new Error("Unparseable filter");
+        }
+
+        if (matchesCondition) {
+          break;
+        }
+      }
+
+      return matchesCondition;
+    });
+
     console.log(`${filteredDashboards.length} dashboards found`);
 
-    console.log("Writing dashboards to output");
+    console.log("Writing dashboards to output variable");
     output = JSON.stringify(filteredDashboards.map(({ title, description, url }) => ({ title, description, url }))),
     core.setOutput("dashboards", output);
     console.log("Done writing");

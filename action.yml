@@ -7,6 +7,10 @@ inputs:
   datadog-app-key:
     description: 'Datadog APP Key'
     required: true
+  filter-titles-by-keywords:
+    description: 'Filter the Datadog dashboards by keywords in their titles'
+    required: false
+    default: "[]"
 outputs:
   dashboards: # id of output
     description: 'JSON string of Datadog dashboards'
