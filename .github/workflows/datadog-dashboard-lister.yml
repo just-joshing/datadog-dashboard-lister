@@ -18,6 +18,7 @@ jobs:
       with:
         datadog-api-key: "${{ secrets.DD_API_KEY }}"
         datadog-app-key: "${{ secrets.DD_APP_KEY }}"
+        filter-titles-by-keywords: '["secret"]'
     - name: Publish dashboard
       run: |
         git add .
