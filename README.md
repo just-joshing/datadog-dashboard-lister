@@ -11,7 +11,7 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 **Required** The Datadog APP key to use to retrieve the list of dashboards.
 
-### ``
+### `filter-titles-by-keywords`
 JSON string with an array of terms by which to filter dashboard titles.
 Each entry should be a string or an array of strings.
 Each entry acts as an "OR" condition.
