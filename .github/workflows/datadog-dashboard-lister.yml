@@ -13,7 +13,7 @@ jobs:
       with:
         datadog-api-key: "${{ secrets.DD_API_KEY }}"
         datadog-app-key: "${{ secrets.DD_APP_KEY }}"
-        filter-titles-by-keywords: '["secret"]'
+        filter-titles-by-keywords: '["token"]'
     - name: Publish dashboard
       run: |
         echo 'Dashboards: ${{ steps.dd-dashboard-lister.outputs.dashboards }}'
