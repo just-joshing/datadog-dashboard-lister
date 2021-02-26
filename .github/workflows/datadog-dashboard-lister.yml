@@ -16,4 +16,4 @@ jobs:
         filter-titles-by-keywords: '["secret"]'
     - name: Publish dashboard
       run: |
-        echo "Dashboards: ${{ steps.dd-dashboard-lister.outputs.dashboards }}"
+        echo 'Dashboards: ${{ steps.dd-dashboard-lister.outputs.dashboards }}'
