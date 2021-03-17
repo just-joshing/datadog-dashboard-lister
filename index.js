@@ -1,7 +1,5 @@
 const core = require('@actions/core');
 const https = require('https');
-const fs = require('fs');
-const { match } = require('assert');
 
 async function run() {
   try {
