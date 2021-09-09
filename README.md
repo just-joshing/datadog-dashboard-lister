@@ -24,8 +24,9 @@ If an entry is an array, the terms in the array are conditioned together with "A
 JSON string of Datadog dashboards.
 
 ## Example usage
-
+```
 uses: just-joshing/datadog-dashboard-lister@v1.0
 with:
   datadog-api-key: "${{ secrets.DD_API_KEY }}"
   datadog-app-key: "${{ secrets.DD_APP_KEY }}"
+```
